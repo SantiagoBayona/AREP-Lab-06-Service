@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  web_app:
+    image: santiagobayona04/logger-webapp
+    container_name: logger-webapp
+    ports:
+      - "36000:4567"
+  web_service1:
+    image: santiagobayona04/logger-service
+    container_name: logger-service-1
+    ports:
+      - "36001:4568"
+  web_service2:
+    image: santiagobayona04/logger-service
+    container_name: logger-service-2
+    ports:
+      - "36002:4568"
+  web_service3:
+    image: santiagobayona04/logger-service
+    container_name: logger-service-3
+    ports:
+      - "36003:4568"
+  db:
+    image: mongo:3.6.1
+    container_name: db
+    volumes:
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+    ports:
+      - 27017:27017
+    command: mongod
+
+volumes:
+  mongodb:
+  mongodb_config:
